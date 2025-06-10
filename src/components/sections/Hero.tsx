@@ -1,6 +1,7 @@
 "use client";
 
 import ClientTypedComponent from "../ClientTypedComponent";
+import { NavbarButton } from "../ui/resizable-navbar";
 
 export function Hero() {
     return (
@@ -21,6 +22,15 @@ export function Hero() {
                         Desde landing pages hasta sistemas de software personalizados,<br />
                         diseñamos soluciones para ayudar a que tu negocio crezca.
                     </p>
+                    <NavbarButton
+                        className="text-lg px-8 py-3 mt-10"
+                        href="https://calendly.com/bautistaliendo/30min"
+                        as="a"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Agendar una llamada
+                    </NavbarButton>
                 </div>
             </div>
         </div>

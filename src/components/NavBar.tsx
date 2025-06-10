@@ -16,15 +16,15 @@ export function NavbarDemo() {
   const navItems = [
     {
       name: "Proyectos",
-      link: "#proyectos",
+      link: "#proyects",
     },
     {
-      name: "Nosotros",
-      link: "#nosotros",
+      name: "Servicios",
+      link: "#services",
     },
     {
       name: "Contacto",
-      link: "#contacto",
+      link: "#contact",
     },
   ];
 
@@ -37,7 +37,13 @@ export function NavbarDemo() {
         <NavbarLogo />
         <NavItems items={navItems} />
         <div className="flex items-center gap-4">
-          <NavbarButton variant="primary">Agendar una llamada</NavbarButton>
+          <NavbarButton 
+          href="https://calendly.com/bautistaliendo/30min"
+          variant="primary"
+          as="a"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Agendar una llamada</NavbarButton>
         </div>
       </NavBody>
 

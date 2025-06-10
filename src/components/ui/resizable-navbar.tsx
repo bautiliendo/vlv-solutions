@@ -236,7 +236,7 @@ export const NavbarLogo = () => {
       href="#"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
     >
-      <Image src="/VLV.png" alt="VLV Solutions logo" width={50} height={40} />
+      <Image src="/vlvLOGO.png" alt="VLV Solutions logo" width={50} height={40} />
     </a>
   );
 };

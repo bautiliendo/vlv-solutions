@@ -1,13 +1,19 @@
 import { Hero } from "@/components/sections/Hero";
 import { ServicesSection } from "@/components/sections/ServicesSection";
+import Proyects from "@/components/sections/Proyects";
+import { Process } from "@/components/sections/Process";
+import { Testimonials } from "@/components/sections/Testimonials";
+import { Contact } from "@/components/sections/Contact";
 
 export default function Home() {
   return (
-    <div>
+    <div className= "min-h-screen">
       <Hero />
-      <div className="container mx-auto p-8">
-        <ServicesSection />
-      </div>
+      <ServicesSection />
+      <Proyects />
+      <Process />
+      <Testimonials />
+      <Contact />
     </div>
   );
 }

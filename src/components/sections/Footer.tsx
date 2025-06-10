@@ -20,8 +20,8 @@ export default function Footer() {
 
         {/* Columna 1: Logo + Descripción */}
         <div className="md:w-1/4 mx-auto md:mx-0">
-          <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-700 text-transparent bg-clip-text">
-            VLV Solutions
+          <h2 className="text-2xl font-bold bg-gradient-to-r text-black bg-clip-text">
+            vlv solutions
           </h2>
           <p className="text-sm text-gray-600 mt-2">
             Desarrollo de sistemas y sitios web adaptados a tu negocio.
