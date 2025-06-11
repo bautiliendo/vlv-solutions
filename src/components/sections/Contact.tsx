@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { NavbarButton } from "@/components/ui/resizable-navbar";
 import { useState } from "react";
 import { MapPin, Phone, Clock, Mail } from "lucide-react";
+import emailjs from '@emailjs/browser';
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,9 @@ export const Contact = () => {
     mensaje: ""
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -21,45 +25,80 @@ export const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Integrar envío por email
-    console.log('Datos del formulario:', formData);
-    
-    // Mostrar mensaje de confirmación temporal
-    alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
-    
-    // Limpiar formulario
-    setFormData({
-      nombre: "",
-      apellido: "",
-      email: "",
-      telefono: "",
-      mensaje: ""
-    });
+    setIsLoading(true);
+    setSubmitStatus('idle');
+
+    try {
+      // Configuración de EmailJS
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('Configuración de EmailJS incompleta');
+      }
+
+      // Preparar los datos del template
+      const templateParams = {
+        from_name: `${formData.nombre} ${formData.apellido}`,
+        from_email: formData.email,
+        phone: formData.telefono,
+        message: formData.mensaje,
+        to_name: 'VLV Solutions',
+      };
+
+      // Enviar email
+      await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      );
+
+      setSubmitStatus('success');
+      
+      // Limpiar formulario
+      setFormData({
+        nombre: "",
+        apellido: "",
+        email: "",
+        telefono: "",
+        mensaje: ""
+      });
+
+    } catch (error) {
+      console.error('Error al enviar el email:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <section id="contact" className="min-h-screen bg-white dark:bg-neutral-950 py-20">
+    <section id="contact" className="min-h-screen bg-white dark:bg-neutral-950 pt-26">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Unificado */}
-        <motion.div
-          initial={{ opacity: 0, y: -50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-white leading-tight mb-6">
-            Contactanos
-          </h1>
-          <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto mb-8">
-            ¿Tenés un proyecto en mente? Nos encantaría conocer más sobre tu idea y ayudarte a hacerla realidad.
-          </p>
-          
+        {/* Header Section */}
+        <div className="text-center justify-center items-center flex flex-col mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-12"
+          >
+            <h1 className="text-3xl lg:text-4xl font-bold text-neutral-900 dark:text-white leading-tight">
+              Contactanos
+            </h1>
+            <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+              ¿Tenés un proyecto en mente? Nos encantaría conocer más sobre tu idea y ayudarte a hacerla realidad.
+            </p>
+          </motion.div>
+
           {/* Opciones de Contacto */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <NavbarButton 
+            <NavbarButton
               href="https://calendly.com/bautistaliendo/30min"
               variant="primary"
               className="text-lg px-8 py-3"
@@ -74,27 +113,22 @@ export const Contact = () => {
               completa el formulario abajo
             </p>
           </div>
-        </motion.div>
+        </div>
 
         {/* Contenido Principal */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-2">
           {/* Información del Negocio - Lado Izquierdo */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="bg-gray-50 dark:bg-neutral-900/50 rounded-2xl p-8 border border-gray-200 dark:border-neutral-800 space-y-8 order-2 lg:order-1"
           >
             <div>
-              <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-6">
+              <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-8">
                 VLV Solutions
               </h2>
-              {/* <p className="text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
-                Somos especialistas en desarrollo web y software personalizado. Nos enfocamos en crear 
-                soluciones digitales que impulsen el crecimiento de tu negocio, combinando diseño moderno 
-                con funcionalidad robusta.
-              </p> */}
             </div>
 
             {/* Información de Contacto */}
@@ -121,9 +155,9 @@ export const Contact = () => {
                   <h3 className="font-semibold text-neutral-900 dark:text-white mb-1">
                     Teléfono
                   </h3>
-                  <a 
-                    href="https://wa.me/543512431491" 
-                    target="_blank" 
+                  <a
+                    href="https://wa.me/543512431491"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-neutral-600 dark:text-neutral-400 hover:text-green-600 dark:hover:text-green-400 transition-colors"
                   >
@@ -154,7 +188,7 @@ export const Contact = () => {
                   <h3 className="font-semibold text-neutral-900 dark:text-white mb-1">
                     Email
                   </h3>
-                  <a 
+                  <a
                     href="mailto:juanbautistaliendo1@gmail.com"
                     className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                   >
@@ -171,7 +205,7 @@ export const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
-            className="bg-gray-50 dark:bg-neutral-900/50 rounded-2xl p-8 border border-gray-200 dark:border-neutral-800"
+            className="bg-gray-50 dark:bg-neutral-900/50 rounded-2xl p-8 border border-gray-200 dark:border-neutral-800 order-1 lg:order-2"
           >
             <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-2">
               Completa el siguiente formulario
@@ -271,10 +305,28 @@ export const Contact = () => {
                 type="submit"
                 variant="primary"
                 className="w-full text-lg px-8 py-4"
+                disabled={isLoading}
               >
-                Enviar Mensaje
+                {isLoading ? 'Enviando...' : 'Enviar Mensaje'}
               </NavbarButton>
             </form>
+
+            {/* Mensajes de estado */}
+            {submitStatus === 'success' && (
+              <div className="mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+                <p className="text-green-800 dark:text-green-200 text-center">
+                  ¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.
+                </p>
+              </div>
+            )}
+
+            {submitStatus === 'error' && (
+              <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                <p className="text-red-800 dark:text-red-200 text-center">
+                  Hubo un error al enviar tu mensaje. Por favor, intenta nuevamente o contáctanos directamente.
+                </p>
+              </div>
+            )}
 
             <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-4 text-center">
               Nos pondremos en contacto contigo dentro de las próximas 24 horas.

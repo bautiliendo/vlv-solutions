@@ -5,7 +5,7 @@ export const Testimonials = () => {
             {
             name: "Gabriela Ludueña",
             quote: "Desde el primer momento que tuve contacto con Bautista me encantó su dedicación, esmero y profesionalismo. Comprometido de lleno con el proyecto, Bautista es el socio ideal.",
-            title: "Emprendedora negocio Amanecer By Bagues",
+            title: "Emprendedora",
             },
             {
             name: "Gonzalo Comba",
@@ -22,7 +22,7 @@ export const Testimonials = () => {
   }));
 
   return (
-    <div className="bg-white dark:bg-neutral-950 my-40 max-w-4xl mx-auto">
+    <div className="bg-white dark:bg-neutral-950  max-w-4xl mx-auto">
       <InfiniteMovingCards items={items} />
     </div>
   );

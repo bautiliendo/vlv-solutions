@@ -57,11 +57,15 @@ export const StickyScroll = ({
 
   return (
     <div
-      className="relative flex h-[30rem] justify-center space-x-10 overflow-y-auto rounded-md p-10 bg-white"
+      className="relative flex h-[30rem] justify-center lg:space-x-10 overflow-y-auto rounded-md p-10 bg-white scrollbar-hide"
       ref={ref}
+      style={{
+        scrollbarWidth: 'none', /* Firefox */
+        msOverflowStyle: 'none', /* Internet Explorer 10+ */
+      }}
     >
-      <div className="div relative flex items-start px-4">
-        <div className="max-w-2xl">
+      <div className="div relative flex items-start px-4 w-full lg:w-auto justify-center lg:justify-start">
+        <div className="max-w-2xl w-full lg:w-auto text-center lg:text-left">
           {content.map((item, index) => (
             <div 
               key={item.title + index} 
@@ -85,7 +89,7 @@ export const StickyScroll = ({
                 animate={{
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
-                className="text-kg mt-10 max-w-sm text-slate-600"
+                className="text-kg mt-10 max-w-sm text-slate-600 mx-auto lg:mx-0"
               >
                 {item.description}
               </motion.p>

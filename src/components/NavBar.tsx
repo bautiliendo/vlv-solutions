@@ -15,12 +15,15 @@ import { useState } from "react";
 export function NavbarDemo() {
   const navItems = [
     {
-      name: "Proyectos",
-      link: "#proyects",
-    },
-    {
       name: "Servicios",
       link: "#services",
+    },
+    {
+      name: "Proyectos",
+      link: "#proyects",
+    },{
+      name: "Proceso",
+      link: "#process",
     },
     {
       name: "Contacto",
@@ -76,6 +79,10 @@ export function NavbarDemo() {
               onClick={() => setIsMobileMenuOpen(false)}
               variant="primary"
               className="w-full"
+              href="https://calendly.com/bautistaliendo/30min"
+              as="a"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Agendar una llamada
             </NavbarButton>

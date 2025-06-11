@@ -33,10 +33,10 @@ export default function Footer() {
           <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-700 mb-3">Navegación</h3>
           <ul className="space-y-2 text-sm">
             <li><Link href="/" className="">Inicio</Link></li>
-            <li><Link href="#" className="">Proyectos</Link></li>
-            <li><Link href="#" className="">Nosotros</Link></li>
-            <li><Link href="#" className="">Contacto</Link></li>
-            <li><Link href="#" className="">Agendar una llamada</Link></li>
+            <li><Link href="#proyects" className="">Proyectos</Link></li>
+            <li><Link href="#process" className="">Proceso</Link></li>
+            <li><Link href="#contact" className="">Contacto</Link></li>
+            <li><Link href={`https://calendly.com/bautistaliendo/30min`} target="_blank" rel="noopener noreferrer" className="">Agendar una llamada</Link></li>
           </ul>
         </div>
 
@@ -44,7 +44,7 @@ export default function Footer() {
         <div className="md:w-1/4">
           <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-700 mb-3">Contacto</h3>
           <ul className="space-y-2 text-sm">
-            <button onClick={handleWhatsapp} className='hover:text-green-600 underline'>+543512431491</button>
+            <button onClick={handleWhatsapp} className='hover:text-green-600 underline cursor-pointer'>+543512431491</button>
           </ul>
         </div>
 
@@ -53,7 +53,7 @@ export default function Footer() {
           <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-700 mb-3">Seguinos</h3>
           <div className="flex justify-center md:justify-start gap-4 ">
             <a href='https://www.instagram.com/vlvsolutions/' target="_blank" rel="noopener noreferrer">
-              <li className=' hover:text-blue-500 hover:underline list-none'> <Instagram size={20} /></li>
+              <li className=' hover:text-red-500 hover:underline list-none'> <Instagram size={20} /></li>
             </a>
             <a href='https://www.linkedin.com/in/vlvsolutions/' target="_blank" rel="noopener noreferrer">
               <li className=' hover:text-blue-500 hover:underline list-none'> <Linkedin size={20} /></li>
