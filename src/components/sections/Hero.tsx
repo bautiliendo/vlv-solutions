@@ -5,11 +5,11 @@ import { NavbarButton } from "../ui/resizable-navbar";
 
 export function Hero() {
     return (
-        <div className="min-h-screen px-4 lg:px-20 pt-20 flex items-center justify-start">
+        <div className="min-h-screen px-4 lg:px-20 pt-28 md:pt-20 flex items-start md:items-center justify-start">
             <div className="">
                 {/* Main Hero Content */}
                 <div className="text-left mb-20">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-black leading-tight mb-4">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-black leading-tight mb-2">
                         Desarrollo Web y Software
                     </h1>
                     <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-black mb-8 leading-tight">

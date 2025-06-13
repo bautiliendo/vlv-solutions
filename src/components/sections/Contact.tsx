@@ -2,7 +2,7 @@
 import { motion } from "motion/react";
 import { NavbarButton } from "@/components/ui/resizable-navbar";
 import { useState } from "react";
-import { MapPin, Phone, Clock, Mail } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
 import emailjs from '@emailjs/browser';
 
 export const Contact = () => {
@@ -77,7 +77,7 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen bg-white dark:bg-neutral-950 pt-26">
+    <section id="contact" className="min-h-screen bg-white dark:bg-neutral-950 pt-26 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div className="text-center justify-center items-center flex flex-col mb-16">
@@ -92,7 +92,7 @@ export const Contact = () => {
               Contactanos
             </h1>
             <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-              ¿Tenés un proyecto en mente? Nos encantaría conocer más sobre tu idea y ayudarte a hacerla realidad.
+              ¿Tenés un proyecto en mente? 
             </p>
           </motion.div>
 
@@ -108,9 +108,8 @@ export const Contact = () => {
             >
               Agendar Llamada Gratuita
             </NavbarButton>
-            <span className="text-neutral-500 dark:text-neutral-400">o</span>
             <p className="text-neutral-600 dark:text-neutral-400">
-              completa el formulario abajo
+              O completa el siguiente formulario
             </p>
           </div>
         </div>
@@ -123,79 +122,51 @@ export const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="bg-gray-50 dark:bg-neutral-900/50 rounded-2xl p-8 border border-gray-200 dark:border-neutral-800 space-y-8 order-2 lg:order-1"
+            className=" rounded-2xl p-8 space-y-6 flex flex-col"
           >
-            <div>
-              <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-8">
-                VLV Solutions
-              </h2>
+            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white">
+              Información de Contacto
+            </h2>
+            <p className="text-neutral-600 dark:text-neutral-400 pb-4">
+              También podés contactarnos directamente a través de estos medios.
+            </p>
+
+            {/* Email */}
+            <div className="flex items-center space-x-4">
+              <div className="flex-shrink-0 w-12 h-12 bg-white dark:bg-black rounded-lg flex items-center justify-center shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:shadow-[0_0_24px_rgba(255,_255,_255,_0.06),_0_1px_1px_rgba(255,_255,_255,_0.05),_0_0_0_1px_rgba(255,_255,_255,_0.04),_0_0_4px_rgba(255,_255,_255,_0.08),_0_16px_68px_rgba(255,_255,_255,_0.05),_0_1px_0_rgba(0,_0,_0,_0.1)_inset]">
+                <Mail className="w-6 h-6 text-neutral-700 dark:text-neutral-300" />
+              </div>
+              <a
+                href="mailto:juanbautistaliendo1@gmail.com"
+                className="text-neutral-800 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+              >
+                juanbautistaliendo1@gmail.com
+              </a>
             </div>
 
-            {/* Información de Contacto */}
-            <div className="space-y-6">
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-white dark:bg-black rounded-lg flex items-center justify-center shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:shadow-[0_0_24px_rgba(255,_255,_255,_0.06),_0_1px_1px_rgba(255,_255,_255,_0.05),_0_0_0_1px_rgba(255,_255,_255,_0.04),_0_0_4px_rgba(255,_255,_255,_0.08),_0_16px_68px_rgba(255,_255,_255,_0.05),_0_1px_0_rgba(0,_0,_0,_0.1)_inset]">
-                  <MapPin className="w-6 h-6 text-neutral-700 dark:text-neutral-300" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-neutral-900 dark:text-white mb-1">
-                    Ubicación
-                  </h3>
-                  <p className="text-neutral-600 dark:text-neutral-400">
-                    Córdoba, Argentina
-                  </p>
-                </div>
+            {/* Teléfono */}
+            <div className="flex items-center space-x-4">
+              <div className="flex-shrink-0 w-12 h-12 bg-white dark:bg-black rounded-lg flex items-center justify-center shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:shadow-[0_0_24px_rgba(255,_255,_255,_0.06),_0_1px_1px_rgba(255,_255,_255,_0.05),_0_0_0_1px_rgba(255,_255,_255,_0.04),_0_0_4px_rgba(255,_255,_255,_0.08),_0_16px_68px_rgba(255,_255,_255,_0.05),_0_1px_0_rgba(0,_0,_0,_0.1)_inset]">
+                <Phone className="w-6 h-6 text-neutral-700 dark:text-neutral-300" />
               </div>
+              <a
+                href="https://wa.me/5493512431491"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-800 dark:text-neutral-300 hover:text-green-600 dark:hover:text-green-400 transition-colors font-medium"
+              >
+                +54 9 351 2431491
+              </a>
+            </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-white dark:bg-black rounded-lg flex items-center justify-center shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:shadow-[0_0_24px_rgba(255,_255,_255,_0.06),_0_1px_1px_rgba(255,_255,_255,_0.05),_0_0_0_1px_rgba(255,_255,_255,_0.04),_0_0_4px_rgba(255,_255,_255,_0.08),_0_16px_68px_rgba(255,_255,_255,_0.05),_0_1px_0_rgba(0,_0,_0,_0.1)_inset]">
-                  <Phone className="w-6 h-6 text-neutral-700 dark:text-neutral-300" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-neutral-900 dark:text-white mb-1">
-                    Teléfono
-                  </h3>
-                  <a
-                    href="https://wa.me/543512431491"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-neutral-600 dark:text-neutral-400 hover:text-green-600 dark:hover:text-green-400 transition-colors"
-                  >
-                    +54 351 243 1491
-                  </a>
-                </div>
+            {/* Ubicación */}
+            <div className="flex items-center space-x-4">
+              <div className="flex-shrink-0 w-12 h-12 bg-white dark:bg-black rounded-lg flex items-center justify-center shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:shadow-[0_0_24px_rgba(255,_255,_255,_0.06),_0_1px_1px_rgba(255,_255,_255,_0.05),_0_0_0_1px_rgba(255,_255,_255,_0.04),_0_0_4px_rgba(255,_255,_255,_0.08),_0_16px_68px_rgba(255,_255,_255,_0.05),_0_1px_0_rgba(0,_0,_0,_0.1)_inset]">
+                <MapPin className="w-6 h-6 text-neutral-700 dark:text-neutral-300" />
               </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-white dark:bg-black rounded-lg flex items-center justify-center shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:shadow-[0_0_24px_rgba(255,_255,_255,_0.06),_0_1px_1px_rgba(255,_255,_255,_0.05),_0_0_0_1px_rgba(255,_255,_255,_0.04),_0_0_4px_rgba(255,_255,_255,_0.08),_0_16px_68px_rgba(255,_255,_255,_0.05),_0_1px_0_rgba(0,_0,_0,_0.1)_inset]">
-                  <Clock className="w-6 h-6 text-neutral-700 dark:text-neutral-300" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-neutral-900 dark:text-white mb-1">
-                    Horario de Atención
-                  </h3>
-                  <p className="text-neutral-600 dark:text-neutral-400">
-                    Lunes a Viernes: 9:00 - 17:00
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-white dark:bg-black rounded-lg flex items-center justify-center shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:shadow-[0_0_24px_rgba(255,_255,_255,_0.06),_0_1px_1px_rgba(255,_255,_255,_0.05),_0_0_0_1px_rgba(255,_255,_255,_0.04),_0_0_4px_rgba(255,_255,_255,_0.08),_0_16px_68px_rgba(255,_255,_255,_0.05),_0_1px_0_rgba(0,_0,_0,_0.1)_inset]">
-                  <Mail className="w-6 h-6 text-neutral-700 dark:text-neutral-300" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-neutral-900 dark:text-white mb-1">
-                    Email
-                  </h3>
-                  <a
-                    href="mailto:juanbautistaliendo1@gmail.com"
-                    className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                  >
-                    juanbautistaliendo1@gmail.com
-                  </a>
-                </div>
-              </div>
+              <p className="text-neutral-600 dark:text-neutral-400">
+                Córdoba, Argentina
+              </p>
             </div>
           </motion.div>
 

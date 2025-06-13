@@ -55,7 +55,7 @@ export default function Proyects() {
             </div>
              <div className="mt-16">
               <NavbarButton 
-                className="text-lg px-8 py-3"
+                className="text-lg px-8 py-3 mb-4"
                 href="#contact"
               >
                 ¿Tenes un proyecto en mente?
